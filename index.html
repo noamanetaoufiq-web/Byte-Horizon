@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noaman Etaoufiq | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+    <div class="bg-animation"></div>
+
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+    </div>
+
+    <div class="navbar" id="navbar" style="display: none;">
+        <i data-lucide="code" class="logo-icon"></i>
+        <span class="logo-text" id="logoText">Noaman Etaoufiq</span>
+        <i data-lucide="menu" class="ml-auto"></i>
+    </div>
+
+    <div class="phase active" id="phase1">
+        <div class="glass-container auth-card">
+            <div class="auth-title" id="authTitle">Welcome</div>
+            <form id="loginForm" class="auth-form active">
+                <div class="input-group">
+                    <i data-lucide="mail" class="input-icon"></i>
+                    <input type="email" class="input-field" placeholder="Email" id="loginEmail" required>
+                </div>
+                <div class="input-group">
+                    <i data-lucide="lock" class="input-icon"></i>
+                    <input type="password" class="input-field" placeholder="Password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn"><span>Login</span></button>
+                <p style="margin-top: 1.5rem;">New here? <a href="#" class="toggle-link" onclick="toggleAuth()">Sign up</a></p>
+            </form>
+
+            <form id="signupForm" class="auth-form" style="display: none;">
+                <div class="input-group">
+                    <i data-lucide="mail" class="input-icon"></i>
+                    <div style="display: flex; gap: 8px;">
+                        <input type="email" class="input-field" placeholder="Email" id="signupEmail" required>
+                        <button type="button" class="btn-verify" onclick="verifyEmail()">Verify</button>
+                    </div>
+                    <small id="verifyStatus" style="color: var(--neon-cyan); display: none; margin-top: 5px;">Verified ✅</small>
+                </div>
+                <div class="input-group"><i data-lucide="user" class="input-icon"></i><input type="text" class="input-field" placeholder="Username" id="signupUsername" required></div>
+                <div class="input-group">
+                    <i data-lucide="globe" class="input-icon"></i>
+                    <select class="input-field" id="signupCountry" required>
+                        <option value="">Select Country</option>
+                        <option value="Morocco">Morocco</option>
+                        <option value="USA">USA</option>
+                        <option value="France">France</option>
+                    </select>
+                </div>
+                <div class="input-group"><i data-lucide="lock" class="input-icon"></i><input type="password" class="input-field" placeholder="Password" id="signupPassword" required></div>
+                <button type="submit" class="btn"><span>Create Account</span></button>
+                <p style="margin-top: 1.5rem;">Got an account? <a href="#" class="toggle-link" onclick="toggleAuth()">Login</a></p>
+            </form>
+        </div>
+    </div>
+
+    <div class="phase" id="phase2">
+        <div class="glass-container lead-card">
+            <h2 id="welcomeMessage" style="text-align: center; color: var(--neon-cyan); margin-bottom: 10px;"></h2>
+            <div class="step-indicator" id="stepIndicator"></div>
+            <form id="leadForm">
+                <div class="step-content" id="step1">
+                    <div class="input-group"><i data-lucide="user" class="input-icon"></i><input type="text" class="input-field" placeholder="Full Name" id="fullName" required></div>
+                    <button type="button" class="btn" onclick="nextStep()">Next</button>
+                </div>
+                <div class="step-content" id="step2" style="display: none;">
+                    <div class="input-group">
+                        <i data-lucide="settings" class="input-icon"></i>
+                        <select class="input-field" id="service" required>
+                            <option value="">Service Required</option>
+                            <option value="Web Development">Web Development</option>
+                            <option value="Trading Tool">Trading Tool</option>
+                            <option value="Mobile App">Mobile App</option>
+                        </select>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-secondary" onclick="prevStep(1)">Back</button>
+                        <button type="button" class="btn" onclick="nextStep()">Next</button>
+                    </div>
+                </div>
+                <div class="step-content" id="step3" style="display: none;">
+                    <div class="input-group"><i data-lucide="dollar-sign" class="input-icon"></i><input type="number" class="input-field" placeholder="Budget ($)" id="budget" required></div>
+                    <div class="btn-group"><button type="button" class="btn btn-secondary" onclick="prevStep(2)">Back</button><button type="button" class="btn" onclick="nextStep()">Next</button></div>
+                </div>
+                <div class="step-content" id="step4" style="display: none;">
+                    <div class="input-group"><i data-lucide="message-circle" class="input-icon"></i><input type="text" class="input-field" placeholder="Telegram/WhatsApp" id="contact" required></div>
+                    <div class="btn-group"><button type="button" class="btn btn-secondary" onclick="prevStep(3)">Back</button><button type="submit" class="btn">Unlock Portfolio</button></div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="phase" id="phase3">
+        <h1 class="glow-text">Portfolio Unlocked 🚀</h1>
+        
+        <div class="projects-grid">
+            <a href="https://noamanetaoufiq-web.github.io/for-ilhamati/" class="project-card" target="_blank">
+                <i data-lucide="palace" class="p-icon" style="color: var(--neon-cyan);"></i>
+                <div class="project-title">The Eternal Palace</div>
+                <p>Personalized digital experience with PWA features.</p>
+                <span class="demo-link">Explore →</span>
+            </a>
+            <a href="https://electrocare-store.vercel.app/" class="project-card" target="_blank">
+                <i data-lucide="zap" class="p-icon" style="color: var(--neon-purple);"></i>
+                <div class="project-title">Electro Care</div>
+                <p>Full e-commerce catalog for tech repairs & sales.</p>
+                <span class="demo-link">Explore →</span>
+            </a>
+            <div class="project-card disabled">
+                <i data-lucide="trending-up" class="p-icon" style="color: var(--neon-pink);"></i>
+                <div class="project-title">Trading AI</div>
+                <p>Advanced market analysis dashboard (Coming Soon).</p>
+            </div>
+        </div>
+
+        <div class="contact-section">
+            <h2 style="margin-bottom: 2rem; color: var(--neon-cyan);">Let's Connect</h2>
+            <div class="contact-grid">
+                <a href="https://t.me/noaman_dev" class="contact-card-link" target="_blank">
+                    <div class="contact-item">
+                        <i data-lucide="send"></i>
+                        <span>Telegram</span>
+                        <small>@noaman_dev</small>
+                    </div>
+                </a>
+                <a href="mailto:noamanetaoufiq@gmail.com" class="contact-card-link">
+                    <div class="contact-item">
+                        <i data-lucide="mail"></i>
+                        <span>Email</span>
+                        <small>noamanetaoufiq@gmail.com</small>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-header"><h2>Admin Dashboard</h2><button onclick="closeAdmin()" class="btn-close">Close</button></div>
+        <div id="usersTableBody" style="padding: 20px;"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
