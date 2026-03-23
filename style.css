@@ -1394,3 +1394,11 @@ h1, h2, h3, h4, h5, h6 {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.2);
 }
+/* --- Zid hadchi f'ekher l'fichier styles.css --- */
+.page {
+  display: none; /* Khbi ay page madi-hach 'active' */
+}
+
+.page.active {
+  display: block !important; /* Biyen ghir l'page li fiha 'active' */
+}
