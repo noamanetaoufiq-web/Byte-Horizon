@@ -3,150 +3,353 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noaman Etaoufiq | Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <title>Byte Horizon | Global Digital Solutions</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
 </head>
 <body>
+    <!-- Animated Background -->
     <div class="bg-animation"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="particles" id="particles"></div>
 
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="spinner"></div>
-    </div>
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
 
-    <div class="navbar" id="navbar" style="display: none;">
-        <i data-lucide="code" class="logo-icon"></i>
-        <span class="logo-text" id="logoText">Noaman Etaoufiq</span>
-        <i data-lucide="menu" class="ml-auto"></i>
-    </div>
-
-    <div class="phase active" id="phase1">
-        <div class="glass-container auth-card">
-            <div class="auth-title" id="authTitle">Welcome</div>
-            <form id="loginForm" class="auth-form active">
-                <div class="input-group">
-                    <i data-lucide="mail" class="input-icon"></i>
-                    <input type="email" class="input-field" placeholder="Email" id="loginEmail" required>
-                </div>
-                <div class="input-group">
-                    <i data-lucide="lock" class="input-icon"></i>
-                    <input type="password" class="input-field" placeholder="Password" id="loginPassword" required>
-                </div>
-                <button type="submit" class="btn"><span>Login</span></button>
-                <p style="margin-top: 1.5rem;">New here? <a href="#" class="toggle-link" onclick="toggleAuth()">Sign up</a></p>
-            </form>
-
-            <form id="signupForm" class="auth-form" style="display: none;">
-                <div class="input-group">
-                    <i data-lucide="mail" class="input-icon"></i>
-                    <div style="display: flex; gap: 8px;">
-                        <input type="email" class="input-field" placeholder="Email" id="signupEmail" required>
-                        <button type="button" class="btn-verify" onclick="verifyEmail()">Verify</button>
+    <!-- ==================== LOGIN PAGE ==================== -->
+    <div class="page" id="loginPage">
+        <div class="auth-container">
+            <div class="auth-box">
+                <div class="auth-header">
+                    <div class="auth-logo">
+                        <i class="fas fa-bolt"></i>
                     </div>
-                    <small id="verifyStatus" style="color: var(--neon-cyan); display: none; margin-top: 5px;">Verified ✅</small>
+                    <h1 class="auth-title">Welcome Back</h1>
+                    <p class="auth-subtitle">Sign in to continue to your dashboard</p>
                 </div>
-                <div class="input-group"><i data-lucide="user" class="input-icon"></i><input type="text" class="input-field" placeholder="Username" id="signupUsername" required></div>
-                <div class="input-group">
-                    <i data-lucide="globe" class="input-icon"></i>
-                    <select class="input-field" id="signupCountry" required>
-                        <option value="">Select Country</option>
-                        <option value="Morocco">Morocco</option>
-                        <option value="USA">USA</option>
-                        <option value="France">France</option>
+
+                <div class="card auth-card">
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label class="form-label">Email Address</label>
+                            <div class="input-wrapper">
+                                <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                                <i class="fas fa-envelope input-icon"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Password</label>
+                            <div class="input-wrapper">
+                                <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                                <i class="fas fa-lock input-icon"></i>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg w-full">
+                            <i class="fas fa-arrow-right"></i>
+                            Sign In
+                        </button>
+                    </form>
+                    
+                    <div class="auth-divider">or</div>
+                    
+                    <button type="button" class="btn btn-secondary w-full" onclick="showPage('signupPage')">
+                        <i class="fas fa-user-plus"></i>
+                        Create New Account
+                    </button>
+                </div>
+
+                <div class="auth-footer">
+                    <p>Admin? <a href="#" onclick="showPage('adminPage'); return false;">Access Dashboard</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== SIGNUP PAGE ==================== -->
+    <div class="page" id="signupPage">
+        <div class="auth-container">
+            <div class="auth-box">
+                <div class="auth-header">
+                    <div class="auth-logo">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h1 class="auth-title">Get Started</h1>
+                    <p class="auth-subtitle">Create your account in seconds</p>
+                </div>
+
+                <div class="card auth-card">
+                    <form id="signupForm">
+                        <div class="form-group">
+                            <label class="form-label">Email Address</label>
+                            <div class="input-wrapper">
+                                <input type="email" id="signupEmail" placeholder="Enter your email" required>
+                                <i class="fas fa-envelope input-icon"></i>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 0.75rem;">
+                            <div class="form-group" style="flex: 1;">
+                                <label class="form-label">Username</label>
+                                <div class="input-wrapper">
+                                    <input type="text" id="signupUsername" placeholder="Choose a username" required>
+                                    <i class="fas fa-at input-icon"></i>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-outline" id="verifyBtn" onclick="verifyEmail()" style="align-self: flex-end; height: 50px;">
+                                Verify
+                            </button>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Country</label>
+                            <div class="input-wrapper">
+                                <select id="signupCountry" required>
+                                    <option value="">Select your country</option>
+                                    <option value="Morocco">🇲🇦 Morocco</option>
+                                    <option value="USA">🇺🇸 United States</option>
+                                    <option value="France">🇫🇷 France</option>
+                                    <option value="UK">🇬🇧 United Kingdom</option>
+                                    <option value="Germany">🇩🇪 Germany</option>
+                                    <option value="Canada">🇨🇦 Canada</option>
+                                    <option value="UAE">🇦🇪 UAE</option>
+                                    <option value="Saudi Arabia">🇸🇦 Saudi Arabia</option>
+                                    <option value="Spain">🇪🇸 Spain</option>
+                                    <option value="Italy">🇮🇹 Italy</option>
+                                    <option value="Other">🌍 Other</option>
+                                </select>
+                                <i class="fas fa-globe input-icon"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Password</label>
+                            <div class="input-wrapper">
+                                <input type="password" id="signupPassword" placeholder="Create a strong password" required>
+                                <i class="fas fa-shield-halved input-icon"></i>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg w-full">
+                            <i class="fas fa-rocket"></i>
+                            Create Account
+                        </button>
+                    </form>
+                    
+                    <div class="auth-divider">or</div>
+                    
+                    <button type="button" class="btn btn-secondary w-full" onclick="showPage('loginPage')">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Login
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== SERVICES PAGE ==================== -->
+    <div class="page" id="servicesPage">
+        <div class="services-hero">
+            <h1 class="services-hero-title text-gradient">Our Services</h1>
+            <p class="services-hero-subtitle">Choose the perfect solution for your business. We deliver excellence across web, mobile, and trading platforms.</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="card service-card" onclick="selectService('web')">
+                <div class="service-icon">
+                    <i class="fas fa-code" style="color: var(--primary-light);"></i>
+                </div>
+                <h3 class="service-title">Web Development</h3>
+                <p class="service-desc">
+                    Custom websites, web applications, and e-commerce platforms built with cutting-edge technologies for maximum performance
+                </p>
+                <div class="service-arrow">
+                    <i class="fas fa-arrow-right" style="color: var(--primary-light);"></i>
+                </div>
+            </div>
+
+            <div class="card service-card" onclick="selectService('trading')">
+                <div class="service-icon">
+                    <i class="fas fa-chart-line" style="color: var(--accent);"></i>
+                </div>
+                <h3 class="service-title">Trading Tools</h3>
+                <p class="service-desc">
+                    Advanced trading bots, market analysis tools, and automated trading systems to maximize your investment returns
+                </p>
+                <div class="service-arrow">
+                    <i class="fas fa-arrow-right" style="color: var(--accent);"></i>
+                </div>
+            </div>
+
+            <div class="card service-card" onclick="selectService('mobile')">
+                <div class="service-icon">
+                    <i class="fas fa-mobile-screen" style="color: #a78bfa;"></i>
+                </div>
+                <h3 class="service-title">Mobile Apps</h3>
+                <p class="service-desc">
+                    Native and cross-platform mobile applications for iOS and Android that users love to use
+                </p>
+                <div class="service-arrow">
+                    <i class="fas fa-arrow-right" style="color: #a78bfa;"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex justify-center" style="padding-bottom: 4rem;">
+            <button type="button" class="btn btn-ghost" onclick="showPage('loginPage')">
+                <i class="fas fa-sign-out-alt"></i>
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+    <!-- ==================== PROJECT FORM PAGE ==================== -->
+    <div class="page" id="projectFormPage">
+        <div class="project-form-container">
+            <div class="project-form-box">
+                <div class="project-form-header">
+                    <h1 class="project-form-title">Tell Us About Your Project</h1>
+                    <p class="project-form-subtitle">Fill in the details and we'll get back to you within 24 hours</p>
+                </div>
+
+                <div class="card project-form-card">
+                    <form id="projectForm">
+                        <div class="form-group">
+                            <label class="form-label">Your Name</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="projectName" placeholder="John Doe" required>
+                                <i class="fas fa-user input-icon"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email Address</label>
+                            <div class="input-wrapper">
+                                <input type="email" id="projectEmail" placeholder="john@example.com" required>
+                                <i class="fas fa-envelope input-icon"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Phone Number <span style="color: var(--text-muted);">(Optional)</span></label>
+                            <div class="input-wrapper">
+                                <input type="tel" id="projectPhone" placeholder="+1 234 567 8900">
+                                <i class="fas fa-phone input-icon"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Estimated Budget</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="projectBudget" placeholder="$5,000 - $10,000">
+                                <i class="fas fa-dollar-sign input-icon"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Project Description</label>
+                            <div class="input-wrapper">
+                                <textarea id="projectDescription" placeholder="Describe your project in detail..." required></textarea>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                            <button type="button" class="btn btn-secondary" onclick="showPage('servicesPage')">
+                                <i class="fas fa-arrow-left"></i>
+                                Back
+                            </button>
+                            <button type="submit" class="btn btn-primary" style="flex: 1;">
+                                <i class="fas fa-paper-plane"></i>
+                                Submit Request
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== ADMIN DASHBOARD ==================== -->
+    <div class="page" id="adminPage">
+        <div class="admin-header">
+            <div class="admin-logo">
+                <div class="admin-logo-icon">
+                    <i class="fas fa-shield-halved"></i>
+                </div>
+                <span class="admin-logo-text">Admin Dashboard</span>
+            </div>
+            <div class="admin-actions">
+                <button type="button" class="btn btn-ghost" onclick="refreshAdminData()">
+                    <i class="fas fa-sync-alt"></i>
+                    Refresh
+                </button>
+                <button type="button" class="btn btn-secondary" onclick="showPage('loginPage')">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </button>
+            </div>
+        </div>
+
+        <div class="admin-container">
+            <div class="admin-content">
+                <!-- Stats -->
+                <div class="admin-stats">
+                    <div class="stat-card">
+                        <div class="stat-value" id="statTotal">0</div>
+                        <div class="stat-label">Total Submissions</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="statNew">0</div>
+                        <div class="stat-label">New</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="statPending">0</div>
+                        <div class="stat-label">Pending</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="statCompleted">0</div>
+                        <div class="stat-label">Completed</div>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="admin-filters">
+                    <div class="admin-search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="adminSearch" placeholder="Search submissions..." onkeyup="filterAdminData()">
+                    </div>
+                    <select class="admin-filter-select" id="adminStatusFilter" onchange="filterAdminData()">
+                        <option value="">All Status</option>
+                        <option value="new">New</option>
+                        <option value="pending">Pending</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                    <select class="admin-filter-select" id="adminServiceFilter" onchange="filterAdminData()">
+                        <option value="">All Services</option>
+                        <option value="web">Web Development</option>
+                        <option value="trading">Trading Tools</option>
+                        <option value="mobile">Mobile Apps</option>
                     </select>
                 </div>
-                <div class="input-group"><i data-lucide="lock" class="input-icon"></i><input type="password" class="input-field" placeholder="Password" id="signupPassword" required></div>
-                <button type="submit" class="btn"><span>Create Account</span></button>
-                <p style="margin-top: 1.5rem;">Got an account? <a href="#" class="toggle-link" onclick="toggleAuth()">Login</a></p>
-            </form>
-        </div>
-    </div>
 
-    <div class="phase" id="phase2">
-        <div class="glass-container lead-card">
-            <h2 id="welcomeMessage" style="text-align: center; color: var(--neon-cyan); margin-bottom: 10px;"></h2>
-            <div class="step-indicator" id="stepIndicator"></div>
-            <form id="leadForm">
-                <div class="step-content" id="step1">
-                    <div class="input-group"><i data-lucide="user" class="input-icon"></i><input type="text" class="input-field" placeholder="Full Name" id="fullName" required></div>
-                    <button type="button" class="btn" onclick="nextStep()">Next</button>
+                <!-- Data Table -->
+                <div class="data-table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Service</th>
+                                <th>Message</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminTableBody">
+                            <!-- Data will be inserted here -->
+                        </tbody>
+                    </table>
                 </div>
-                <div class="step-content" id="step2" style="display: none;">
-                    <div class="input-group">
-                        <i data-lucide="settings" class="input-icon"></i>
-                        <select class="input-field" id="service" required>
-                            <option value="">Service Required</option>
-                            <option value="Web Development">Web Development</option>
-                            <option value="Trading Tool">Trading Tool</option>
-                            <option value="Mobile App">Mobile App</option>
-                        </select>
-                    </div>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-secondary" onclick="prevStep(1)">Back</button>
-                        <button type="button" class="btn" onclick="nextStep()">Next</button>
-                    </div>
-                </div>
-                <div class="step-content" id="step3" style="display: none;">
-                    <div class="input-group"><i data-lucide="dollar-sign" class="input-icon"></i><input type="number" class="input-field" placeholder="Budget ($)" id="budget" required></div>
-                    <div class="btn-group"><button type="button" class="btn btn-secondary" onclick="prevStep(2)">Back</button><button type="button" class="btn" onclick="nextStep()">Next</button></div>
-                </div>
-                <div class="step-content" id="step4" style="display: none;">
-                    <div class="input-group"><i data-lucide="message-circle" class="input-icon"></i><input type="text" class="input-field" placeholder="Telegram/WhatsApp" id="contact" required></div>
-                    <div class="btn-group"><button type="button" class="btn btn-secondary" onclick="prevStep(3)">Back</button><button type="submit" class="btn">Unlock Portfolio</button></div>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div class="phase" id="phase3">
-        <h1 class="glow-text">Portfolio Unlocked 🚀</h1>
-        
-        <div class="projects-grid">
-            <a href="https://noamanetaoufiq-web.github.io/for-ilhamati/" class="project-card" target="_blank">
-                <i data-lucide="palace" class="p-icon" style="color: var(--neon-cyan);"></i>
-                <div class="project-title">The Eternal Palace</div>
-                <p>Personalized digital experience with PWA features.</p>
-                <span class="demo-link">Explore →</span>
-            </a>
-            <a href="https://electrocare-store.vercel.app/" class="project-card" target="_blank">
-                <i data-lucide="zap" class="p-icon" style="color: var(--neon-purple);"></i>
-                <div class="project-title">Electro Care</div>
-                <p>Full e-commerce catalog for tech repairs & sales.</p>
-                <span class="demo-link">Explore →</span>
-            </a>
-            <div class="project-card disabled">
-                <i data-lucide="trending-up" class="p-icon" style="color: var(--neon-pink);"></i>
-                <div class="project-title">Trading AI</div>
-                <p>Advanced market analysis dashboard (Coming Soon).</p>
-            </div>
-        </div>
-
-        <div class="contact-section">
-            <h2 style="margin-bottom: 2rem; color: var(--neon-cyan);">Let's Connect</h2>
-            <div class="contact-grid">
-                <a href="https://t.me/noaman_dev" class="contact-card-link" target="_blank">
-                    <div class="contact-item">
-                        <i data-lucide="send"></i>
-                        <span>Telegram</span>
-                        <small>@noaman_dev</small>
-                    </div>
-                </a>
-                <a href="mailto:noamanetaoufiq@gmail.com" class="contact-card-link">
-                    <div class="contact-item">
-                        <i data-lucide="mail"></i>
-                        <span>Email</span>
-                        <small>noamanetaoufiq@gmail.com</small>
-                    </div>
-                </a>
             </div>
         </div>
     </div>
 
-    <div class="admin-panel" id="adminPanel">
-        <div class="admin-header"><h2>Admin Dashboard</h2><button onclick="closeAdmin()" class="btn-close">Close</button></div>
-        <div id="usersTableBody" style="padding: 20px;"></div>
-    </div>
-
-    <script src="script.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
