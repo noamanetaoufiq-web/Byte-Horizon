@@ -67,12 +67,14 @@ html {
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* ============================================
@@ -85,9 +87,8 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1; /* Bach i-bqa dima ta7t l'ktiba */
+  z-index: -1;
   background: var(--bg-primary);
-  overflow: hidden;
 }
 
 .bg-animation::before {
@@ -98,29 +99,10 @@ body {
   width: 200%;
   height: 200%;
   background: 
-    radial-gradient(ellipse at 20% 20%, rgba(99, 102, 241, 0.2) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 80%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
-    radial-gradient(ellipse at 40% 60%, rgba(139, 92, 246, 0.1) 0%, transparent 40%);
-  animation: bgMove 20s ease-in-out infinite;
-}
-
-/* --- L'Keyframes li kano naqsin bach t-7rrek l'animation --- */
-@keyframes bgMove {
-  0%, 100% {
-    transform: translate(0, 0) rotate(0deg) scale(1);
-  }
-  33% {
-    transform: translate(5%, 5%) rotate(2deg) scale(1.05);
-  }
-  66% {
-    transform: translate(-3%, 2%) rotate(-1deg) scale(1.02);
-  }
-}
-
-/* Section Wrapper bach l'ktiba t-ban s7i7 */
-.content-wrapper {
-  position: relative;
-  z-index: 1;
+    radial-gradient(ellipse at 20% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 40% 60%, rgba(139, 92, 246, 0.08) 0%, transparent 40%);
+  animation: bgMove 30s ease-in-out infinite;
 }
 
 @keyframes bgMove {
